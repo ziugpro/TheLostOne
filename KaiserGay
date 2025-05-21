@@ -21,13 +21,13 @@ local function getBlacklistReason(key)
     return BlacklistKeys[key]  
 end  
   
-if not script_key or getBlacklistReason(script_key) then  
-    local reason = getBlacklistReason(script_key) or "Key bị chặn"  
+if not getgenv().key or getBlacklistReason(getgenv().key) then  
+    local reason = getBlacklistReason(getgenv().key) or "Key bị chặn"  
     game:GetService("Players").LocalPlayer:Kick(reason)  
     return  
 end  
   
-if isPremiumKey(script_key) then  
+if isPremiumKey(getgenv().key) then  
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/TheLostOne/refs/heads/main/obfuscated_script-1747835858829.lua"))()  
 else  
     game:GetService("Players").LocalPlayer:Kick("Invalid Key")  
