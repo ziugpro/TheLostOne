@@ -8,7 +8,7 @@ local PremiumKeys = {
   
 local BlacklistKeys = {  
     ["zibqur1t3sevpjf2f84h3ghpz"] = "[ Key Is Blacklist ] Reason: Your Scammer Key",  
-    ["badkey456"] = "Vi phạm điều khoản sử dụng",  
+    ["jh919pndumvzpbjsg0kubta12"] = "[ Key Is Blacklist ] Reason: Your Mom Gay",  
     ["xyz789"] = "Key đã bị thu hồi do lạm dụng"  
 }  
   
