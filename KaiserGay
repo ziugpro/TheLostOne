@@ -30,7 +30,12 @@ if not getgenv().key or getBlacklistReason(getgenv().key) then
     game:GetService("Players").LocalPlayer:Kick(reason)  
     return  
 end  
-  
+
+if getgenv().mode == "kaitun" then
+    game:GetService("Players").LocalPlayer:Kick("Update Please Wait")
+   return
+end
+
 if isPremiumKey(getgenv().key) then  
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/TheLostOne/refs/heads/main/obfuscated_script-1747835858829.lua"))()  
 else  
