@@ -34,7 +34,7 @@ end
 if getgenv().mode == "kaitun" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Kaitun/refs/heads/main/Quanlykaitun"))() 
 elseif gengenv().mode == "Tool" then
-    loadstring(game;HttpGet(""))()
+    loadstring(game;HttpGet("https://raw.githubusercontent.com/ziugpro/TheLostOne/refs/heads/main/Tool"))()
    return
 end
 
