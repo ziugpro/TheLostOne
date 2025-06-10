@@ -1,0 +1,223 @@
+getgenv().Settings = {
+      TogglePro = nil,
+      ModelGame = nil,
+      TagMember = nil,
+      WebhookLink = nil,
+      SelectTag = nil, 
+      MemberInput = nil, Delete = Nil,
+      Rejoin = nil, Kick = nil, Muiti = nil,
+      
+
+}
+
+
+local FileName = tostring(game.Players.LocalPlayer.UserId).."_Settings.json"
+local BaseFolder = "ToolHub"
+local SubFolder = "Database"
+
+function SaveSetting() 
+    local json
+    local HttpService = game:GetService("HttpService")
+    
+    if writefile then
+        json = HttpService:JSONEncode(getgenv().Settings)
+
+        if not isfolder(BaseFolder) then
+            makefolder(BaseFolder)
+        end
+        if not isfolder(BaseFolder.."/"..SubFolder) then
+            makefolder(BaseFolder.."/"..SubFolder)
+        end
+        
+        writefile(BaseFolder.."/"..SubFolder.."/"..FileName, json)
+    else
+        error("ERROR: Can't save your settings")
+    end
+end
+
+function LoadSetting()
+    local HttpService = game:GetService("HttpService")
+    if readfile and isfile and isfile(BaseFolder.."/"..SubFolder.."/"..FileName) then
+        getgenv().Settings = HttpService:JSONDecode(readfile(BaseFolder.."/"..SubFolder.."/"..FileName))
+    end
+end
+
+LoadSetting()
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Tool Hub",
+    Text = "Success Loading",
+    Icon = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420",
+    Duration = 5,
+    Callback = function()
+    end
+})
+repeat task.wait() until game:IsLoaded()
+
+getgenv().Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
+getgenv().ToggleUI = "LeftControl"
+
+task.spawn(function()
+    if not getgenv().LoadedMobileUI then
+        getgenv().LoadedMobileUI = true
+        local OpenUI = Instance.new("ScreenGui")
+        local ImageButton = Instance.new("ImageButton")
+        local UICorner = Instance.new("UICorner")
+        OpenUI.Name = "OpenUI"
+        OpenUI.Parent = game:GetService("CoreGui")
+        OpenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+        ImageButton.Parent = OpenUI
+        ImageButton.BackgroundColor3 = Color3.fromRGB(105, 105, 105)
+        ImageButton.BackgroundTransparency = 0.8
+        ImageButton.Position = UDim2.new(0, 5, 0, 5)
+        ImageButton.Size = UDim2.new(0, 55, 0, 55)
+        ImageButton.Image = getgenv().Image
+        ImageButton.Draggable = false
+        ImageButton.Transparency = 1
+        UICorner.CornerRadius = UDim.new(100)
+        UICorner.Parent = ImageButton
+        ImageButton.MouseButton1Click:Connect(function()
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, getgenv().ToggleUI, false, game)
+        end)
+    end
+end)
+
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Window = Fluent:CreateWindow({
+    Title = "Tool Hub [ Premium ]",
+    SubTitle = "By Ziugpro",
+    TabWidth = 130,
+    Size = UDim2.fromOffset(525, 345),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Tab Webhook", Icon = "" }),
+    Rejoin = Window:AddTab({ Title = "Tab Rejoin", Icon = "" }),
+    Settings = Window:AddTab({ Title = "Tab Setting Ui", Icon = "" }),
+
+    
+}
+
+local Input = Tabs.Main:AddInput("WebhookLink", {
+        Title = "Webhook Link",
+        Default = getgenv().Settings.WebhookLink or false,
+        Numeric = false,
+        Finished = false,
+        Placeholder = "",
+        Callback = function(Value)
+    getgenv().Settings.WebhookLink = Value
+    SaveSetting()
+    end,
+   ChangedCallback = function(Value)
+    getgenv().Settings.WebhookLink = Value
+    SaveSetting()
+    end
+    })
+local Input = Tabs.Main:AddInput("MemberInput", {
+        Title = "Member ID or Name",
+        Default = getgenv().Settings.MemberInput or false,
+        Numeric = false,
+        Finished = false,
+        Placeholder = "",
+        Callback = function(Value)
+    getgenv().Settings.MemberInput = Value
+    SaveSetting()
+    end,
+   ChangedCallback = function(Value)
+    getgenv().Settings.MemberInput = Value
+    SaveSetting()
+    end
+    })
+
+local Game = {"Blox Fruit", "King Legacy"}
+Tabs.Main:AddDropdown("ModelGame", {
+    Title = "Select Game",
+    Values = Game,
+    Multi = false,
+    Default = 1,
+    Callback = function(Value)
+        getgenv().Settings.ModelGame = Value
+        SaveSetting()
+    end
+})
+Tabs.Main:AddDropdown("SelectTag", {
+    Title = "Select Tag",
+    Values = {"All Member"},
+    Multi = false,
+    Default = 1,
+    Callback = function(Value)
+        getgenv().Settings.SelectTag = Value
+        SaveSetting()
+    end
+})
+Tabs.Main:AddToggle("TagMember", {
+    Title = "Tag Member",
+    Description = "Input Your Name Member Need Tag Or Select Tag All Member",
+    Default = getgenv().Settings.TagMember or false,
+    Callback = function(Value)
+        getgenv().Settings.TagMember = Value
+        SaveSetting()
+    end
+})
+Tabs.Main:AddToggle("TogglePro", {
+    Title = "Start Webhook",
+    Default = getgenv().Settings.TogglePro or false,
+    Callback = function(Value)
+        getgenv().Settings.TogglePro = Value
+        SaveSetting()
+    end
+})
+local TogglePro = Tabs.Rejoin:AddToggle("Rejoin", {
+    Title = "Rejoin When Is Error",
+    Default = getgenv().Settings.Rejoin or false,
+})
+TogglePro:OnChanged(function(Value)
+    _G.Rejoin = Value
+end)
+
+local TogglePro = Tabs.Rejoin:AddToggle("Kick", {
+    Title = "Rejoin When Is Kick",
+    Default = getgenv().Settings.Kick or false,
+    CallBack = function(Value)
+     getgenv().Settings.kick = Value
+        SaveSetting()
+     end
+})
+local TogglePro = Tabs.Rejoin:AddToggle("Delete", {
+    Title = "Delete All File Anticheat",
+    Default = getgenv().Settings.Delete or false,
+})
+TogglePro:OnChanged(function(Value)
+    _G.Delete = Value
+end)
+
+--[[ Code Tool Rejoin ]]--
+spawn(function()
+    local Players = game:GetService("Players")
+    local TeleportService = game:GetService("TeleportService")
+    local LocalPlayer = Players.LocalPlayer
+    while task.wait(5) do
+        if _G.Rejoin then
+            if not LocalPlayer.Character or not LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                TeleportService:Teleport(game.PlaceId, LocalPlayer)
+            elseif tostring(LocalPlayer.Character.HumanoidRootPart.Position) == "nan, nan, nan" then
+                TeleportService:Teleport(game.PlaceId, LocalPlayer)
+            end
+        end
+    end
+    getgenv().Settings.Rejoin = Value
+    SaveSetting()
+end)
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:SetIgnoreIndexes({})
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("ToolHub")
+SaveManager:SetFolder("Database")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
