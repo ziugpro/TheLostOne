@@ -4,11 +4,8 @@ local PremiumKeys = {
     "89i77y5dmgdx023mg1kxvh8tb",
     "r8vpj6fncuc21njkar47xby0j",
     "jh919pndumvzpbjsg0kubta12",
-}  
-  
+}    
 local BlacklistKeys = {  
-    ["zibqur1t3sevpjf2f84h3ghpz"] = "[ Key Is Blacklist ] Reason: Your Scammer Key",  
-    ["jh919pndumvzpbjsg0kubta12"] = "[ Key Is Blacklist ] Reason: Your Mom Gay",  
     ["xyz789"] = "Key đã bị thu hồi do lạm dụng"  
 }  
   
@@ -32,8 +29,8 @@ if not getgenv().key or getBlacklistReason(getgenv().key) then
 end  
 
 if getgenv().mode == "kaitun" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Kaitun/refs/heads/main/Quanlykaitun"))() 
-   return
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Kaitun/refs/heads/main/Quanlykaitun"))()
+    return
 end
 
 if isPremiumKey(getgenv().key) then  
