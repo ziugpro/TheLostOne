@@ -226,6 +226,25 @@ TogglePro:OnChanged(function(Value)
     _G.Delete = Value
 end)
 
+local PlayerCount = "1"
+
+Tabs.Server:AddDropdown("PlayerDropdown", {
+    Title = "Player Count",
+    Values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
+    Multi = false,
+    Default = 1,
+    Callback = function(Value)
+        PlayerCount = Value
+    end
+})
+
+Tabs.Server:AddToggle("HopByPlayerCount", {
+    Title = "Hop Server With Player Count",
+    Default = false,
+    Callback = function(Value)
+        _G.HopByPlayerCount = Value
+    end
+})
 local JobId = ""
 
 local Input = Tabs.Server:AddInput("Input", {
@@ -274,7 +293,22 @@ Tabs.Server:AddToggle("AutoHop", {
         _G.AutoHop = Value
     end
 })
+spawn(function()
+    while task.wait(5) do
+        if _G.HopByPlayerCount then
+            local HttpService = game:GetService("HttpService")
+            local TeleportService = game:GetService("TeleportService")
+            local Servers = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100"))
 
+            for _, v in pairs(Servers.data) do
+                if v.playing == tonumber(PlayerCount) and v.id ~= game.JobId then
+                    TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id)
+                    break
+                end
+            end
+        end
+    end
+end)
 spawn(function()
     while task.wait(5) do
         if _G.AutoHop then
