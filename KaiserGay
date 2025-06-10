@@ -33,6 +33,8 @@ end
 
 if getgenv().mode == "kaitun" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Kaitun/refs/heads/main/Quanlykaitun"))() 
+elseif gengenv().mode == "Tool" then
+    loadstring(game;HttpGet(""))()
    return
 end
 
