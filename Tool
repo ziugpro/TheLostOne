@@ -97,6 +97,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Tab Webhook", Icon = "" }),
     Rejoin = Window:AddTab({ Title = "Tab Rejoin", Icon = "" }),
+    Server = Window:AddTab({ Title = "Tab Server", Icon = "" }),
     Settings = Window:AddTab({ Title = "Tab Setting Ui", Icon = "" }),
 
     
@@ -195,7 +196,71 @@ TogglePro:OnChanged(function(Value)
     _G.Delete = Value
 end)
 
---[[ Code Tool Rejoin ]]--
+local JobId = ""
+
+local Input = Tabs.Server:AddInput("Input", {
+    Title = "Job-Id",
+    Default = "",
+    Numeric = false,
+    Finished = false,
+    Placeholder = "",
+    Callback = function(Value)
+        JobId = Value
+    end
+})
+
+Tabs.Server:AddButton({
+    Title = "Join Server",
+    Description = "",
+    Callback = function()
+        if JobId ~= "" then
+            local PlaceId = game.PlaceId
+            game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, JobId, game.Players.LocalPlayer)
+        end
+    end
+})
+Tabs.Server:AddToggle("JoinJobToggle", {
+    Title = "Spam Join Server",
+    Default = false,
+    Callback = function(Value)
+        if Value and _G.JobId ~= "" then
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.JobID, game.Players.LocalPlayer)
+        end
+    end
+})
+Tabs.Server:AddButton({
+    Title = "Copy Job ID",
+    Description = "",
+    Callback = function()
+        pcall(function()
+            setclipboard(game.JobId)
+        end)
+    end
+})
+Tabs.Server:AddToggle("AutoHop", {
+    Title = "Auto Hop Server",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoHop = Value
+    end
+})
+
+spawn(function()
+    while task.wait(5) do
+        if _G.AutoHop then
+            local HttpService = game:GetService("HttpService")
+            local TeleportService = game:GetService("TeleportService")
+            local Servers = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100"))
+
+            for _, v in pairs(Servers.data) do
+                if v.playing < v.maxPlayers and v.id ~= game.JobId then
+                    TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id)
+                    break
+                end
+            end
+        end
+    end
+end)
 spawn(function()
     local Players = game:GetService("Players")
     local TeleportService = game:GetService("TeleportService")
