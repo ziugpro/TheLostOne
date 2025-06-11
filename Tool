@@ -27,7 +27,8 @@ if not script_key or getBlacklistReason(script_key) then
     return  
 end  
   
-if isPremiumKey(script_key) then  
+if isPremiumKey(script_key) then 
+game:GetService("Players").LocalPlayer:Kick("Tool Is Not Working")  
     getgenv().Settings = {
       TogglePro = nil,
       ModelGame = nil,
