@@ -117,8 +117,8 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 local Window = Fluent:CreateWindow({
     Title = "Tool Hub [ Premium ]",
     SubTitle = "By Ziugpro",
-    TabWidth = 140,
-    Size = UDim2.fromOffset(535, 345),
+    TabWidth = 150,
+    Size = UDim2.fromOffset(545, 345),
     Acrylic = true,
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl
@@ -430,7 +430,7 @@ Tabs.Server:AddToggle("TogglePro", {
         SaveSetting()
     end
 })
-Tabs.Setting:AddParagraph({
+Tabs.Server:AddParagraph({
         Title = "King Legacy Setting",
         Content = "!______!"
     })
