@@ -165,7 +165,7 @@ local Input = Tabs.Main:AddInput("MemberInput", {
     end
     })
 
-local Game = {"Blox Fruit", "King Legacy"}
+local Game = {"Blox Fruit", "King Legacy", "Arise Crossvover"}
 Tabs.Main:AddDropdown("ModelGame", {
     Title = "Select Game",
     Values = Game,
@@ -228,16 +228,6 @@ TogglePro:OnChanged(function(Value)
 end)
 
 local PlayerCount = "1"
-
-Tabs.Server:AddDropdown("PlayerDropdown", {
-    Title = "Player Count",
-    Values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
-    Multi = false,
-    Default = 1,
-    Callback = function(Value)
-        PlayerCount = Value
-    end
-})
 local Input = Tabs.Server:AddInput("InputPlayer", {
     Title = "Player Count",
     Default = "",
@@ -356,42 +346,48 @@ Tabs.Setting:AddParagraph({
         Content = "!______!"
     })
 
-local TogglePro = Tabs.Setting:AddToggle("StoreFruit", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify When Storage Fruit",
-    Default = true,
-    CallBack = function(Value)
+    Default = getgenv().Settings.StoreFruit or false,
+    Callback = function(Value)
+        getgenv().Settings.StoreFruit = Value
+        SaveSetting()
     end
 })
-local TogglePro = Tabs.Setting:AddToggle("killlevithan", {
-    Title = "Notify When Kill Levithan",
+Tabs.Server:AddToggle("TogglePro", {
+    Title = "Notify When You Kill Levithan",
     Default = getgenv().Settings.killlevithan or false,
-    Default = true,
-    CallBack = function(Value)
-     
-     end
+    Callback = function(Value)
+        getgenv().Settings.killlevithan = Value
+        SaveSetting()
+    end
 })
-local TogglePro = Tabs.Setting:AddToggle("UpLevel", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify When Up Level",
-    Default = true,
-    CallBack = function(Value)
-     
-     end
+    Default = getgenv().Settings.UpLevel or false,
+    Callback = function(Value)
+        getgenv().Settings.UpLevel = Value
+        SaveSetting()
+    end
 })
-local TogglePro = Tabs.Setting:AddToggle("TimeDie", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify Number of Time You Die",
-    Default = true,
-    CallBack = function(Value)
-    
+    Default = getgenv().Settings.TimeDie or false,
+    Callback = function(Value)
+        getgenv().Settings.TimeDie = Value
+        SaveSetting()
     end
 })
 Tabs.Setting:AddParagraph({
         Title = "King Legacy Setting",
         Content = "!______!"
     })
-local TogglePro = Tabs.Setting:AddToggle("NotifyAll", {
+Tabs.Setting:AddToggle("TogglePro", {
     Title = "Notify All",
-    Default = true,
-    CallBack = function(Value)
+    Default = getgenv().Settings.NotifyAll or false,
+    Callback = function(Value)
+        getgenv().Settings.NotifyAll = Value
+        SaveSetting()
     end
 })
 SaveManager:SetLibrary(Fluent)
