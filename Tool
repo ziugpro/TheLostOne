@@ -117,8 +117,8 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 local Window = Fluent:CreateWindow({
     Title = "Tool Hub [ Premium ]",
     SubTitle = "By Ziugpro",
-    TabWidth = 130,
-    Size = UDim2.fromOffset(525, 345),
+    TabWidth = 140,
+    Size = UDim2.fromOffset(535, 345),
     Acrylic = true,
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl
@@ -128,8 +128,7 @@ local Tabs = {
     Setup = Window:AddTab({ Title = "Setup Tool", Icon = "" }),
     Main = Window:AddTab({ Title = "Tab Webhook", Icon = "" }),
     Rejoin = Window:AddTab({ Title = "Tab Rejoin", Icon = "" }),
-    Setting = Window:AddTab({ Title = "Setting Webhook", Icon = "" }),
-    Server = Window:AddTab({ Title = "Tab Server", Icon = "" }),
+    Server = Window:AddTab({ Title = "Setting Notify & Server", Icon = "" }),
     Settings = Window:AddTab({ Title = "Tab Setting Ui", Icon = "" }),
 
     
@@ -394,12 +393,12 @@ spawn(function()
     getgenv().Settings.Rejoin = Value
     SaveSetting()
 end)
-Tabs.Setting:AddParagraph({
+Tabs.Server:AddParagraph({
         Title = "Blox Fruit Setting",
         Content = "!______!"
     })
 
-Tabs.Setting:AddToggle("TogglePro", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify When Storage Fruit",
     Default = getgenv().Settings.StoreFruit or false,
     Callback = function(Value)
@@ -407,7 +406,7 @@ Tabs.Setting:AddToggle("TogglePro", {
         SaveSetting()
     end
 })
-Tabs.Setting:AddToggle("TogglePro", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify When You Kill Levithan",
     Default = getgenv().Settings.killlevithan or false,
     Callback = function(Value)
@@ -415,7 +414,7 @@ Tabs.Setting:AddToggle("TogglePro", {
         SaveSetting()
     end
 })
-Tabs.Setting:AddToggle("TogglePro", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify When Up Level",
     Default = getgenv().Settings.UpLevel or false,
     Callback = function(Value)
@@ -423,7 +422,7 @@ Tabs.Setting:AddToggle("TogglePro", {
         SaveSetting()
     end
 })
-Tabs.Setting:AddToggle("TogglePro", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify Number of Time You Die",
     Default = getgenv().Settings.TimeDie or false,
     Callback = function(Value)
@@ -435,7 +434,7 @@ Tabs.Setting:AddParagraph({
         Title = "King Legacy Setting",
         Content = "!______!"
     })
-Tabs.Setting:AddToggle("TogglePro", {
+Tabs.Server:AddToggle("TogglePro", {
     Title = "Notify All",
     Default = getgenv().Settings.NotifyAll or false,
     Callback = function(Value)
