@@ -30,13 +30,13 @@ end
 if isPremiumKey(script_key) then  
     getgenv().Settings = {
       TogglePro = nil, NotifyAll = nil,
-      ModelGame = nil, StoreFruit = nil,
-      TagMember = nil, UpLevel = nil,
+      ModelGame = nil, StoreFruit = nil, SetupToggle = nil,
+      TagMember = nil, UpLevel = nil, DropSetup = nil,
       WebhookLink = nil, killlevithan = nil,
       SelectTag = nil, TimeDie = nil,
       MemberInput = nil, Delete = Nil,
       Rejoin = nil, Kick = nil, Muiti = nil,
-      
+      KeyNotify = nil, AntiDelay = nil,
 
 }
 
@@ -125,6 +125,7 @@ local Window = Fluent:CreateWindow({
 })
 
 local Tabs = {
+    Setup = Window:AddTab({ Title = "Setup Tool", Icon = "" }),
     Main = Window:AddTab({ Title = "Tab Webhook", Icon = "" }),
     Rejoin = Window:AddTab({ Title = "Tab Rejoin", Icon = "" }),
     Setting = Window:AddTab({ Title = "Setting Webhook", Icon = "" }),
@@ -133,7 +134,59 @@ local Tabs = {
 
     
 }
-
+local Verison = {"Verison 1.4113", "Verison 1.7933", "Verison 1.8346"}
+Tabs.Setup:AddDropdown("DropSetup", {
+    Title = "Select Verison Tool",
+    Values = Verison,
+    Multi = true,
+    Default = {"Verison 1.8346"},
+    Callback = function(Value)
+        getgenv().Settings.DropSetup = Value
+        SaveSetting()
+    end
+})
+local Setting = {"Discord v1.021", "Discord v3.121", "Discord v1.931"}
+Tabs.Setting:AddDropdown("DropSetting", {
+    Title = "Select Webhook Type",
+    Values = Setting,
+    Multi = false,
+    Default = 1,
+    Callback = function(Value)
+        getgenv().Settings.DropSetting = Value
+        SaveSetting()
+    end
+})
+local Input = Tabs.Setup:AddInput("KeyNotify", {
+        Title = "Key Notify Tool",
+        Default = getgenv().Settings.KeyNotify or false,
+        Numeric = false,
+        Finished = false,
+        Placeholder = "",
+        Callback = function(Value)
+    getgenv().Settings.KeyNotify = Value
+    SaveSetting()
+    end,
+   ChangedCallback = function(Value)
+    getgenv().Settings.KeyNotify = Value
+    SaveSetting()
+    end
+    })
+Tabs.Setup:AddToggle("AntiDelay", {
+    Title = "Anti Delay",
+    Default = getgenv().Settings.AntiDelay or false,
+    Callback = function(Value)
+        getgenv().Settings.AntiDelay = Value
+        SaveSetting()
+    end
+})
+Tabs.Setup:AddToggle("SetupToggle", {
+    Title = "Start Setup",
+    Default = getgenv().Settings.SetupToggle or false,
+    Callback = function(Value)
+    getgenv().Settings.SetupToggle = Value
+    SaveSetting()
+    end
+})
 local Input = Tabs.Main:AddInput("WebhookLink", {
         Title = "Webhook Link",
         Default = getgenv().Settings.WebhookLink or false,
