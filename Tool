@@ -355,7 +355,7 @@ local TogglePro = Tabs.Setting:AddToggle("StoreFruit", {
     SaveSetting()
     end
 })
-local TogglePro = Tabs.Main:AddToggle("killlevithan", {
+local TogglePro = Tabs.Setting:AddToggle("killlevithan", {
     Title = "Notify When Kill Levithan",
     Default = getgenv().Settings.killlevithan or false,
     CallBack = function(Value)
