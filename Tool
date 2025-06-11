@@ -358,34 +358,30 @@ Tabs.Setting:AddParagraph({
 
 local TogglePro = Tabs.Setting:AddToggle("StoreFruit", {
     Title = "Notify When Storage Fruit",
-    Default = getgenv().Settings.StoreFruit or false,
+    Default = true,
     CallBack = function(Value)
-    getgenv().Settings.StoreFruit = Value
-    SaveSetting()
     end
 })
 local TogglePro = Tabs.Setting:AddToggle("killlevithan", {
     Title = "Notify When Kill Levithan",
     Default = getgenv().Settings.killlevithan or false,
+    Default = true,
     CallBack = function(Value)
-    getgenv().Settings.killlevithan = Value
-    SaveSetting()
-    end
+     
+     end
 })
 local TogglePro = Tabs.Setting:AddToggle("UpLevel", {
     Title = "Notify When Up Level",
-    Default = getgenv().Settings.UpLevel or false,
+    Default = true,
     CallBack = function(Value)
-     getgenv().Settings.UpLevel = Value
-        SaveSetting()
+     
      end
 })
 local TogglePro = Tabs.Setting:AddToggle("TimeDie", {
     Title = "Notify Number of Time You Die",
-    Default = getgenv().Settings.TimeDie or false,
+    Default = true,
     CallBack = function(Value)
-    getgenv().Settings.TimeDie = Value
-    SaveSetting()
+    
     end
 })
 Tabs.Setting:AddParagraph({
@@ -394,10 +390,8 @@ Tabs.Setting:AddParagraph({
     })
 local TogglePro = Tabs.Setting:AddToggle("NotifyAll", {
     Title = "Notify All",
-    Default = getgenv().Settings.NotifyAll or false,
+    Default = true,
     CallBack = function(Value)
-    getgenv().Settings.NotifyAll = Value
-    SaveSetting()
     end
 })
 SaveManager:SetLibrary(Fluent)
