@@ -238,7 +238,16 @@ Tabs.Server:AddDropdown("PlayerDropdown", {
         PlayerCount = Value
     end
 })
-
+local Input = Tabs.Server:AddInput("InputPlayer", {
+    Title = "Player Count",
+    Default = "",
+    Numeric = false,
+    Finished = false,
+    Placeholder = "",
+    Callback = function(Value)
+        PlayerCount = Value
+    end
+})
 Tabs.Server:AddToggle("HopByPlayerCount", {
     Title = "Hop Server With Player Count",
     Default = false,
