@@ -29,11 +29,11 @@ end
   
 if isPremiumKey(script_key) then  
     getgenv().Settings = {
-      TogglePro = nil,
-      ModelGame = nil,
-      TagMember = nil,
-      WebhookLink = nil,
-      SelectTag = nil, 
+      TogglePro = nil, NotifyAll = nil,
+      ModelGame = nil, StoreFruit = nil,
+      TagMember = nil, UpLevel = nil,
+      WebhookLink = nil, killlevithan = nil,
+      SelectTag = nil, TimeDie = nil,
       MemberInput = nil, Delete = Nil,
       Rejoin = nil, Kick = nil, Muiti = nil,
       
@@ -127,6 +127,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Tab Webhook", Icon = "" }),
     Rejoin = Window:AddTab({ Title = "Tab Rejoin", Icon = "" }),
+    Setting = Window:AddTab({ Title = "Setting Webhook", Icon = "" }),
     Server = Window:AddTab({ Title = "Tab Server", Icon = "" }),
     Settings = Window:AddTab({ Title = "Tab Setting Ui", Icon = "" }),
 
@@ -341,7 +342,55 @@ spawn(function()
     getgenv().Settings.Rejoin = Value
     SaveSetting()
 end)
+Tabs.Setting:AddParagraph({
+        Title = "Blox Fruit Setting",
+        Content = "!______!"
+    })
 
+local TogglePro = Tabs.Setting:AddToggle("StoreFruit", {
+    Title = "Notify When Storage Fruit",
+    Default = getgenv().Settings.StoreFruit or false,
+    CallBack = function(Value)
+    getgenv().Settings.StoreFruit = Value
+    SaveSetting()
+    end
+})
+local TogglePro = Tabs.Main:AddToggle("killlevithan", {
+    Title = "Notify When Kill Levithan",
+    Default = getgenv().Settings.killlevithan or false,
+    CallBack = function(Value)
+    getgenv().Settings.killlevithan = Value
+    SaveSetting()
+    end
+})
+local TogglePro = Tabs.Setting:AddToggle("UpLevel", {
+    Title = "Notify When Up Level",
+    Default = getgenv().Settings.UpLevel or false,
+    CallBack = function(Value)
+     getgenv().Settings.UpLevel = Value
+        SaveSetting()
+     end
+})
+local TogglePro = Tabs.Setting:AddToggle("TimeDie", {
+    Title = "Notify Number of Time You Die",
+    Default = getgenv().Settings.TimeDie or false,
+    CallBack = function(Value)
+    getgenv().Settings.TimeDie = Value
+    SaveSetting()
+    end
+})
+Tabs.Setting:AddParagraph({
+        Title = "King Legacy Setting",
+        Content = "!______!"
+    })
+local TogglePro = Tabs.Setting:AddToggle("NotifyAll", {
+    Title = "Notify All",
+    Default = getgenv().Settings.NotifyAll or false,
+    CallBack = function(Value)
+    getgenv().Settings.NotifyAll = Value
+    SaveSetting()
+    end
+})
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
 SaveManager:SetIgnoreIndexes({})
