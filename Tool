@@ -34,7 +34,7 @@ if isPremiumKey(script_key) then
       TagMember = nil, UpLevel = nil, DropSetup = nil,
       WebhookLink = nil, killlevithan = nil,
       SelectTag = nil, TimeDie = nil,
-      MemberInput = nil, Delete = Nil,
+      MemberInput = nil, Delete = nil,
       Rejoin = nil, Kick = nil, Muiti = nil,
       KeyNotify = nil, AntiDelay = nil,
 
