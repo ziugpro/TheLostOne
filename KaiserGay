@@ -7,7 +7,7 @@ local PremiumKeys = {
     "oyv346blnovossoe1v6pet5cd",
 }    
 local BlacklistKeys = {  
-    ["oyv346blnovossoe1v6pet5cd"] = "Key đã bị thu hồi do key đã lỗi thời"  
+    ["oyv346blnovossoe1v6pet5cd"] = "[ Key Lỗi ] Key đã bị thu hồi do key đã lỗi thời"  
 }  
   
 local function isPremiumKey(key)  
