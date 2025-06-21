@@ -4,6 +4,7 @@ local PremiumKeys = {
     "89i77y5dmgdx023mg1kxvh8tb",
     "r8vpj6fncuc21njkar47xby0j",
     "jh919pndumvzpbjsg0kubta12",
+    "oyv346blnovossoe1v6pet5cd",
 }    
 local BlacklistKeys = {  
     ["xyz789"] = "Key đã bị thu hồi do lạm dụng"  
