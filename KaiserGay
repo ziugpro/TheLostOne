@@ -7,7 +7,8 @@ local PremiumKeys = {
     "oyv346blnovossoe1v6pet5cd",
 }    
 local BlacklistKeys = {  
-    ["oyv346blnovossoe1v6pet5cd"] = "[ Key Lỗi ] Key đã bị thu hồi do key đã lỗi thời"  
+    ["oyv346blnovossoe1v6pet5cd"] = "[ Key Lỗi ] Key đã bị thu hồi do key đã lỗi thời",
+    ["TOOL-JZHU7-5OMCW-XGAOS-8WI67"] "[ Danh Sách Đen ] Lý do: bạn có hành vi xúc phạm Admin",
 }  
   
 local function isPremiumKey(key)  
